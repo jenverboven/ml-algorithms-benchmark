@@ -29,24 +29,24 @@ y = tictactoe_df[target_variable]
 # Encode the data
 # # Ordinal
 
-ce_ord = ce.OrdinalEncoder(cols = feature_cols)
-x_cat = ce_ord.fit_transform(x)
+# ce_ord = ce.OrdinalEncoder(cols = feature_cols)
+# x_cat = ce_ord.fit_transform(x)
 
 # # One Hot Encoding
 
-# ce_oh = ce.OneHotEncoder(cols = feature_cols)
-# x_cat_oh = ce_oh.fit_transform(x)
+ce_oh = ce.OneHotEncoder(cols = feature_cols)
+x_cat = ce_oh.fit_transform(x)
 
 # Split into training and test set
 
 x_train, x_test, y_train, y_test = train_test_split(x_cat, y, test_size=0.2, random_state=42)
-
 # Train the classifier with the data
 
 classifier = DecisionTreeClassifier(criterion = "entropy")
 classifier = classifier.fit(x_train, y_train)
 
 # Predict values
+
 
 prediction = classifier.predict(x_test)
 accuracy_score_decision_tree = accuracy_score(y_test, prediction)
@@ -55,8 +55,7 @@ st.write("Accuracy of decision tree: ", accuracy_score_decision_tree)
 # Logistic regression
 
 classifier = LogisticRegression()
-
-classifier.fit(x_train, y_train)
+classifier = classifier.fit(x_train, y_train.values.ravel())
 
 prediction = classifier.predict(x_test)
 accuracyscore = accuracy_score(y_test, prediction)
@@ -65,8 +64,7 @@ st.write("Accuracy of logistic regression: ", accuracyscore)
 # SVC (Support Vector Classifier)
 
 classifier = SVC()
-
-classifier.fit(x_train, y_train)
+classifier = classifier.fit(x_train, y_train.values.ravel())
 
 prediction = classifier.predict(x_test)
 accuracyscore = accuracy_score(y_test, prediction)
