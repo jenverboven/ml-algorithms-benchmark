@@ -4,9 +4,4 @@ pandas
 pydeck
 streamlit
 sklearn
-sklearn.tree
-sklearn.linear_model
-sklearn.model_selection
-sklearn.metrics
-sklearn.svm
 category_encoders
